@@ -1,0 +1,503 @@
+/* ===== RESET DEFAULT BROWSER STYLES ===== */
+body {
+margin: 0;
+padding: 0;
+font-family: 'Cascadia Code', monospace;
+background-color: #e8e8dc;
+
+/* ✅ NEW: center everything on screen */
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+
+/* ===== MAIN CONTAINER ===== */
+.container {
+text-align: center;
+
+/* ✅ UPDATED: better responsive spacing */
+width: 90%;
+max-width: 1200px;
+
+}
+
+/* ===== TITLE ===== */
+h1 {
+font-size: 72px;
+margin-bottom: 10px;
+}
+
+/* ===== SUBTITLE ===== */
+.subtitle {
+font-size: 20px;
+
+/* ✅ REDUCED: was too large and broke centering */
+margin-bottom: 150px;
+
+}
+
+/* ===== CORAL ROW (IMPORTANT PART) ===== */
+.coral-row {
+display: flex;
+justify-content: center;
+/* ✅ NEW: makes layout responsive */
+flex-wrap: wrap;
+
+gap: 40px;
+
+/* ✅ NEW: bottom line */
+border-bottom: 2px solid black;
+padding-bottom: 20px;
+
+}
+
+/* ===== EACH CORAL BLOCK ===== */
+.coral {
+position: relative;
+cursor: pointer;
+transition: transform 0.3s ease;
+}
+
+/* ===== CORAL IMAGE ===== */
+.coral img {
+/* ✅ UPDATED: responsive sizing */
+width: 10vw;
+min-width: 100px;
+max-width: 160px;
+}
+
+/* ===== HOVER EFFECT (MOVE UP) ===== */
+.coral:hover {
+transform: translateY(-10px);
+}
+
+/* ===== LABEL (HIDDEN BY DEFAULT) ===== */
+.label {
+position: absolute;
+top: -100px;
+left: 50%;
+transform: translateX(-50%);
+
+background-color: #e8e8dc;
+border: 2px solid black;
+border-radius: 15px;
+padding: 5px 10px;
+font-size: 16px;
+
+opacity: 0;
+transition: opacity 0.3s ease;
+
+}
+
+/* ===== SHOW LABEL ON HOVER ===== */
+.coral:hover .label {
+opacity: 1;
+}
+
+/* ===== NEW: LINE FROM CORAL TO LABEL ===== */
+.coral::before {
+content: "";
+position: absolute;
+/* starts from top of coral */
+top: -60px;
+left: 50%;
+transform: translateX(-50%);
+
+width: 2px;
+height: 60px;
+
+background-color: black;
+
+opacity: 0;
+transition: opacity 0.3s ease;
+
+}
+
+/* show line on hover */
+.coral:hover::before {
+opacity: 1;
+}
+/* ===== FIX: stop home-page hover line from affecting reef-page corals ===== */
+.reef-panel .coral::before {
+content: none;
+display: none;
+}
+
+/* optional safety: reef page does not use the home-page label element */
+.reef-panel .label {
+display: none;
+}
+
+/* =========================================
+REEF PAGE
+========================================= */
+
+/* full screen background */
+.reef-container {
+width: 100%;
+height: 100vh;
+background-image: url("Images/Background.png");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 100px;
+box-sizing: border-box;
+}
+
+/* main inner panel */
+.reef-panel {
+width: 92%;
+height: 72vh;
+background-color: #e8e8dc;
+border-radius: 26px;
+position: relative;
+padding: 50px 60px 50px 60px;
+box-sizing: border-box;
+overflow: hidden;
+}
+
+/* =========================================
+TOP BAR
+========================================= */
+.top-bar {
+display: grid;
+grid-template-columns: auto 1fr auto;
+align-items: center;
+column-gap: 20px;
+}
+
+/* back button */
+.back-btn {
+width: 42px;
+height: 42px;
+border: 2px solid black;
+border-radius: 50%;
+background-color: #e8e8dc;
+font-family: 'Cascadia Code', monospace;
+font-size: 22px;
+cursor: pointer;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 0;
+}
+
+/* reef title capsule */
+.reef-title-box {
+width: 500px;
+max-width: 100%;
+height: 40px;
+border: 2px solid black;
+border-radius: 24px;
+background-color: #e8e8dc;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+#reef-page-title {
+margin: 0;
+font-size: 18px;
+line-height: 1;
+}
+
+/* year area */
+.year-section {
+width: 360px;
+position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.year-line {
+position: absolute;
+width: 100%;
+height: 2px;
+background-color: black;
+top: 50%;
+left: 0;
+transform: translateY(-50%);
+}
+
+.year-buttons {
+position: relative;
+z-index: 2;
+display: flex;
+gap: 20px;
+}
+
+.year-buttons button {
+width: 66px;
+height: 38px;
+border: 2px solid black;
+border-radius: 20px;
+background-color: #e8e8dc;
+font-family: 'Cascadia Code', monospace;
+font-size: 16px;
+cursor: pointer;
+transition: height 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.year-buttons button:hover {
+height: -10px;
+transform: translateX(2px);
+box-shadow: 2px 0 0 black;
+}
+
+.year-buttons button.active {
+height: 44px;
+transform: translateX(2px);
+box-shadow: 2px 0 0 black;
+}
+
+/* =========================================
+CENTER TEXT BLOCK
+========================================= */
+.center-content {
+width: 480px;
+max-width: 90%;
+margin: 30px auto 0 auto;
+transform: translateY(10px);
+
+/* ✅ CENTER EVERYTHING WITHOUT TOUCHING SPACING */
+display: flex;
+flex-direction: column;
+align-items: center;
+
+text-align: center;
+
+}
+
+/* coral title */
+#coral-name {
+font-size: 28px;
+margin: 80px 0 14px 0;
+}
+
+/* -----------------------------
+BLUE + GREEN TEXT AREA
+TWEAK HERE if you want to move
+or resize the main description text
+------------------------------ */
+.text-box {
+width: 100%;
+margin: 100 auto 40px auto;
+}
+
+/* FIRST PARAGRAPH ("blue text" in your design) */
+#text-blue {
+font-size: 14px;
+line-height: 1.45;
+margin: 0 0 14px 0;
+}
+
+/* SECOND PARAGRAPH ("green text" in your design) */
+#text-green {
+font-size: 14px;
+line-height: 1.45;
+margin: 0 0 50px 0;
+}
+
+/* status area */
+.status-box {
+width: 100%;
+margin-top: px;
+}
+
+#status-title {
+font-size: 18px;
+margin: 0 0 14px 0;
+}
+
+#status-text {
+font-size: 14px;
+line-height: 1.45;
+margin: 0;
+}
+
+/* =========================================
+CORAL AREA
+========================================= */
+.coral-display {
+position: absolute;
+left: 80px;
+right: 80px;
+bottom: 94px;
+height: 215px;
+}
+
+/* reef page corals only */
+.reef-panel .coral {
+position: absolute;
+width: 210px;
+height: 145px;
+background-size: contain;
+background-repeat: no-repeat;
+background-position: center;
+cursor: pointer;
+transition: transform 0.25s ease;
+}
+
+.reef-panel .coral:hover {
+transform: translateY(-15px);
+}
+
+/* clicked coral stays lifted */
+.reef-panel .coral.active-coral {
+transform: translateY(-15px);
+}
+
+
+/* left coral cluster */
+.coral1 { left: 0;   bottom: 18px; }
+.coral2 { left: 98px; bottom: 0; }
+.coral3 { left: 220px; bottom: 12px; }
+
+/* right coral cluster */
+.coral4 { right: 220px; bottom: 10px; }
+.coral5 { right: 98px;  bottom: 0; }
+.coral6 { right: 0;   bottom: 10px; }
+
+/* hover label card */
+.coral-label-card {
+position: absolute;
+min-width: 110px;
+height: 28px;
+border: 2px solid black;
+border-radius: 16px;
+background-color: #e8e8dc;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 0 12px;
+z-index: 5;
+pointer-events: none;
+opacity: 0;
+transition: opacity 0.2s ease;
+}
+
+/* vertical line below hover label */
+.coral-label-card::after {
+content: "";
+position: absolute;
+width: 2px;
+height: 42px;
+background-color: black;
+top: 28px;
+left: 50%;
+transform: translateX(-50%);
+}
+
+#coral-label-text {
+font-size: 11px;
+white-space: nowrap;
+}
+
+/* =========================================
+BOTTOM INFO
+========================================= */
+.bottom-info {
+position: absolute;
+left: 60px;
+right: 60px;
+bottom: 50px;
+text-align: center;
+}
+
+.bottom-line {
+width: 100%;
+height: 2px;
+background-color: black;
+margin-bottom: 14px;
+}
+
+#reef-info {
+margin: 0;
+font-size: 10px;
+line-height: 1.35;
+}
+
+/* =========================================
+RESPONSIVE
+========================================= */
+@media (max-width: 1100px) {
+.reef-title-box {
+width: 360px;
+}
+
+.year-section {
+    width: 300px;
+}
+
+.center-content {
+    width: 430px;
+}
+
+.reef-panel .coral {
+    width: 170px;
+    height: 120px;
+}
+
+.coral1 { left: 0; bottom: 15px; }
+.coral2 { left: 75px; bottom: 0; }
+.coral3 { left: 160px; bottom: 10px; }
+
+.coral4 { right: 160px; bottom: 10px; }
+.coral5 { right: 75px; bottom: 0; }
+.coral6 { right: 0; bottom: 10px; }
+
+}
+
+@media (max-width: 850px) {
+.reef-panel {
+padding: 20px;
+}
+
+.top-bar {
+    grid-template-columns: 1fr;
+    row-gap: 14px;
+    justify-items: center;
+}
+
+.reef-title-box,
+.year-section {
+    width: 100%;
+    max-width: 360px;
+}
+
+.center-content {
+    margin-top: 22px;
+}
+
+.coral-display {
+    left: 20px;
+    right: 20px;
+    bottom: 68px;
+    height: 180px;
+}
+
+.reef-panel .coral {
+    width: 110px;
+    height: 82px;
+}
+
+.coral1 { left: 0; bottom: 10px; }
+.coral2 { left: 45px; bottom: 0; }
+.coral3 { left: 95px; bottom: 10px; }
+
+.coral4 { right: 95px; bottom: 10px; }
+.coral5 { right: 45px; bottom: 0; }
+.coral6 { right: 0; bottom: 10px; }
+
+#reef-info {
+    font-size: 9px;
+}
+
+}
