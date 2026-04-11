@@ -501,3 +501,117 @@ padding: 20px;
 }
 
 }
+/* =========================================
+GLOBAL RESPONSIVE FIXES (DO NOT TOUCH YOUR VALUES)
+========================================= */
+
+/* Allow page to scroll instead of forcing fit */
+body {
+  height: auto;
+  min-height: 100vh;
+  align-items: flex-start;
+  padding: 40px 0;
+}
+
+/* Fix reef page overflow */
+.reef-container {
+  height: auto;
+  min-height: 100vh;
+  align-items: flex-start;
+}
+
+/* Prevent content from getting cut */
+.reef-panel {
+  height: auto;
+  min-height: 72vh;
+}
+
+/* =========================================
+HOME PAGE FIX
+========================================= */
+
+/* Prevent coral overflow */
+.coral-row {
+  width: 100%;
+}
+
+/* =========================================
+TABLET FIX
+========================================= */
+@media (max-width: 900px) {
+
+  body {
+    padding: 30px 10px;
+  }
+
+  .container {
+    width: 100%;
+  }
+
+}
+
+/* =========================================
+MOBILE FIX
+========================================= */
+@media (max-width: 600px) {
+
+  /* Stack layout naturally */
+  .reef-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Make coral area flow instead of absolute */
+  .coral-display {
+    position: relative;
+    height: auto;
+    margin-top: 40px;
+    bottom: unset;
+    left: unset;
+    right: unset;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  /* Override absolute coral positions */
+  .reef-panel .coral {
+    position: relative;
+    left: unset !important;
+    right: unset !important;
+    bottom: unset !important;
+  }
+
+  /* Improve spacing */
+  .center-content {
+    margin-top: 20px;
+  }
+
+  /* Bottom info spacing */
+  .bottom-info {
+    position: relative;
+    left: unset;
+    right: unset;
+    bottom: unset;
+    margin-top: 30px;
+  }
+
+}
+
+/* =========================================
+SMALL MOBILE (VERY IMPORTANT)
+========================================= */
+@media (max-width: 400px) {
+
+  h1 {
+    font-size: 48px;
+  }
+
+  .subtitle {
+    margin-bottom: 80px;
+  }
+
+}
