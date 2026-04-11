@@ -655,3 +655,27 @@ document.querySelectorAll(".year-buttons button").forEach(button => {
 });
 loadPage();
 }
+
+function scaleReefPage() {
+    if (!window.location.pathname.includes("reef.html")) return;
+
+    const wrap = document.querySelector(".reef-scale-wrap");
+    const panel = document.querySelector(".reef-panel");
+
+    if (!wrap || !panel) return;
+
+    wrap.style.transform = "scale(1)";
+
+    const panelWidth = panel.offsetWidth;
+    const panelHeight = panel.offsetHeight;
+
+    const scaleX = window.innerWidth / panelWidth;
+    const scaleY = window.innerHeight / panelHeight;
+    const scale = Math.min(scaleX, scaleY, 1);
+
+    wrap.style.transform = `scale(${scale})`;
+}
+
+window.addEventListener("load", scaleReefPage);
+window.addEventListener("resize", scaleReefPage);
+window.addEventListener("orientationchange", scaleReefPage);
